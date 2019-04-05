@@ -30,55 +30,54 @@ public class MapBucketNoron {
 
 
     /*------- CHANGING HERE -------*/
-
-    public void inputForEachElementMap(String [] arrNameVariable){
-        ListRootNode listTemp = new ListRootNode();
-        System.out.println(" |--- INPUT NODE ---| ");
-        Node rootNode = new Node();
-        rootNode.inputNode(true);
-        listTemp.addNodeToList(rootNode);
-
-        // TODO : Now Find many variable is need for RECIPE
-        for (int i = 0 ; i < rootNode.arrayRecipeIngredients.length ; i++){
-            if (checkCharacter(arrNameVariable,rootNode.arrayRecipeIngredients[i]) == true){
-                Node subNode = new Node();
-                subNode.setDescription(rootNode.arrayRecipeIngredients[i]);
-                listTemp.addNodeToList(subNode);
-            }
-        }
-        mapNODE.add(listTemp);
-    }//End
-
-    // There is nope :((
-    public void inputMapNODE(int soluongCT,String [] arrNameVariable){
-        for (int i = 0 ; i < soluongCT ; i++){
-            inputForEachElementMap(arrNameVariable);
-            System.out.println("-------------------------------");
-        }
-    }// End
-    /*------- CHANGING HERE AND REPLACE BOTTOM -------*/
-
-//    public void getDataRecipe(String description, ArrayList<String> listOperator){
+//    public void inputForEachElementMap(String [] arrNameVariable){
 //        ListRootNode listTemp = new ListRootNode();
+//        System.out.println(" |--- INPUT NODE ---| ");
 //        Node rootNode = new Node();
-//        rootNode.setUpNodeIsRecipe(description,listOperator);
+//        rootNode.inputNode(true);
 //        listTemp.addNodeToList(rootNode);
-//        for (String operator : listOperator){
-//            Node subNode = new Node();
-//            subNode.setUpNodeIsElement(operator);
-//            listTemp.addNodeToList(subNode);
+//
+//        // TODO : Now Find many variable is need for RECIPE
+//        for (int i = 0 ; i < rootNode.arrayRecipeIngredients.length ; i++){
+//            if (checkCharacter(arrNameVariable,rootNode.arrayRecipeIngredients[i]) == true){
+//                Node subNode = new Node();
+//                subNode.setDescription(rootNode.arrayRecipeIngredients[i]);
+//                listTemp.addNodeToList(subNode);
+//            }
 //        }
 //        mapNODE.add(listTemp);
-//    }
+//    }//End
+//
+//    // There is nope :((
+//    public void inputMapNODE(int soluongCT,String [] arrNameVariable){
+//        for (int i = 0 ; i < soluongCT ; i++){
+//            inputForEachElementMap(arrNameVariable);
+//            System.out.println("-------------------------------");
+//        }
+//    }// End
+    /*------- CHANGING HERE AND REPLACE BOTTOM -------*/
+
+    public void getDataRecipe(String description, ArrayList<String> listOperator){
+        ListRootNode listTemp = new ListRootNode();
+        Node rootNode = new Node();
+        rootNode.setUpNodeIsRecipe(description,listOperator);
+        listTemp.addNodeToList(rootNode);
+        for (String operator : listOperator){
+            Node subNode = new Node();
+            subNode.setUpNodeIsElement(operator);
+            listTemp.addNodeToList(subNode);
+        }
+        mapNODE.add(listTemp);
+    }
 
 
 
 
 
 
-    public boolean isContainedInTheRecipe(String element,int indexOfArrayRecipe){
-        ListRootNode listTemp = mapNODE.get(indexOfArrayRecipe);
-        for (Node x: listTemp.getListRoot()) {
+    public boolean isContainedInTheRecipe(String element,int indexRecipe){
+        ListRootNode listTemp = mapNODE.get(indexRecipe);
+            for (Node x: listTemp.getListRoot()) {
             if(x.getRecipe() == true){
                 for (int i = 0 ; i < x.arrayRecipeIngredients.length; i++ ){
                     if(x.arrayRecipeIngredients[i].compareTo(element) == 0){
@@ -91,10 +90,10 @@ public class MapBucketNoron {
     }//End
 
 
-    public void setupInitMatrixSpread(int [][] matrixSpread, int height , int width , String [] arrNameVariable){
+    public void setupMatrixSpread(int [][] matrixSpread, int height , int width , String [] arrNameVariable){
 
-        for (int i = 0 ; i < height ; i++){
-            for (int j = 0 ; j < width ; j++){
+        for (int i = 0 ; i < height ; i++){ // Variable
+            for (int j = 0 ; j < width ; j++){ // Recipe
                 if (isContainedInTheRecipe(arrNameVariable[i],j) == true){
                     matrixSpread[i][j] = -1;
                 }

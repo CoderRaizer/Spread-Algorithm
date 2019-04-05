@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class BootDataRecipe {
 
-    private static final String FILENAME = "D:\\zFile\\recipe.txt";
+    private static final String FILENAME = "D:\\zFile\\recipe_2.txt";
     ArrayList<String> listBoxRecipe;
 
     public BootDataRecipe(){
@@ -59,14 +59,31 @@ public class BootDataRecipe {
                 }
             } // Have Description Recipe
 
+            String x = "";
             for (int i = startElementIndex ; i < recipeBox.length() ; i++){
-                if (recipeBox.charAt(i) != ' '){
-                    listOperator.add(Character.toString(recipeBox.charAt(i)));
+
+                if (i == (recipeBox.length()-1)){
+                    x = "";
+                    int j = i;
+                    while(recipeBox.charAt(j) != ' '){
+                        x += Character.toString(recipeBox.charAt(j));
+                        j--;
+                    }
+                    StringBuffer stringBuffer = new StringBuffer(x);
+                    x = stringBuffer.reverse().toString();
+                    listOperator.add(x);
                 }
+                if (recipeBox.charAt(i) == ' '){
+                    listOperator.add(x);
+                    x="";
+                } else {
+                    x += Character.toString(recipeBox.charAt(i));
+                }
+
             }// Have listOperator for Recipe
 
             // Boot to mapNODE
-//            mapBucketNoron.getDataRecipe(description,listOperator);
+            mapBucketNoron.getDataRecipe(description,listOperator);
             listOperator.clear();
         }
     }

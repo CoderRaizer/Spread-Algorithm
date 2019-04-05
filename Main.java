@@ -33,15 +33,15 @@ public class Main {
         MapBucketNoron mapBucketNoron = new MapBucketNoron();
 
 
+        /*-----------------------------------------------*/
+        BootDataRecipe bootDataRecipe = new BootDataRecipe();
+        bootDataRecipe.readDataRecipe();
+        bootDataRecipe.pushDataToMapNode(mapBucketNoron);
+        mapBucketNoron.display();
+        System.out.print("\n" + "Size MapNode : " + mapBucketNoron.mapNODE.size() + "\n");
 
-//        BootDataRecipe bootDataRecipe = new BootDataRecipe();
-//        bootDataRecipe.readDataRecipe();
-//        bootDataRecipe.pushDataToMapNode(mapBucketNoron);
-
-
-
-
-        System.out.print("Co Bao Nhieu Bien Dang Ton Tai : ");
+        /*-----------------------------------------------*/
+        System.out.print("Co Bao Nhieu Bien Dang Ton Tai Trong Cac Cong Thuc : ");
         int soluongBien; soluongBien = o.nextInt();
         String [] arrNameVariable = new String[soluongBien];
         inputVariable(arrNameVariable);
@@ -51,25 +51,14 @@ public class Main {
         }
         System.out.print("\n");
 
-        System.out.print("Co Bao Nhieu Cong Thuc : ");
-        int soluongCT; soluongCT = o.nextInt();
-//        MapBucketNoron mapBucketNoron = new MapBucketNoron();
-        mapBucketNoron.inputMapNODE(soluongCT,arrNameVariable);
-//        BootDataRecipe bootDataRecipe = new BootDataRecipe(mapBucketNoron,soluongCT,arrNameVariable);
-
-        mapBucketNoron.display();
-        System.out.print("\n");
 
 
-        // TODO : SETUP FOR MATRIX SPREAD
+
+        // TODO : CREATE MATRIX SPREAD
         int [][] matrixSpread;
         matrixSpread = new int[soluongBien][mapBucketNoron.mapNODE.size()];
-
-        // TODO : INIT FOR MATRIX
+        // TODO : FIRST INIT FOR MATRIX
         firstInitMatrixSpread(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size());
-
-        //TODO : SHOW MATRIX
-        /*Step 1*/
         for (int i = 0 ; i < soluongBien ; i++){
             for (int j = 0 ; j < mapBucketNoron.mapNODE.size() ; j++){
                 System.out.print(matrixSpread[i][j] + " ");
@@ -77,10 +66,11 @@ public class Main {
             System.out.print("\n");
         }
 
-        //TODO : SETUP MATRIX AVAILABLE ZONE RECIPE
-        mapBucketNoron.setupInitMatrixSpread(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size(),arrNameVariable);
 
-        //TODO : SHOW MATRIX
+
+//        //TODO : SETUP MATRIX AVAILABLE ZONE RECIPE
+        mapBucketNoron.setupMatrixSpread(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size(),arrNameVariable);
+//        //TODO : SHOW MATRIX
         /*Step 2*/
         for (int i = 0 ; i < soluongBien ; i++){
             for (int j = 0 ; j < mapBucketNoron.mapNODE.size() ; j++){
@@ -88,6 +78,8 @@ public class Main {
             }
             System.out.print("\n");
         }
+
+
 
         // TODO : Activated Node Already Known
         System.out.println("==========================================");
@@ -112,7 +104,6 @@ public class Main {
             System.out.print("\n");
         }
 
-
         mapBucketNoron.runAroundMatrixSpread(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size(),findResult,arrNameVariable);
         System.out.print("End Program");
 
@@ -124,3 +115,9 @@ public class Main {
 
     }
 }
+
+//        System.out.print("Co Bao Nhieu Cong Thuc : ");
+//        int soluongCT; soluongCT = o.nextInt();
+//        mapBucketNoron.inputMapNODE(soluongCT,arrNameVariable);
+//        mapBucketNoron.display();
+//        System.out.print("\n");
