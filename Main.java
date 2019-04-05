@@ -5,14 +5,14 @@ import java.util.Scanner;
 public class Main {
 
 
-    public static void inputVariable(String [] arrNameVariable){
+    public static void inputVariable(String [] arrNameVariableInBoxRecipe){
 
         Scanner o = new Scanner(System.in);
         String nameVariable;
-        for (int i = 0 ; i < arrNameVariable.length ; i++){
+        for (int i = 0 ; i < arrNameVariableInBoxRecipe.length ; i++){
             System.out.print("Input Var : ");
             nameVariable = o.nextLine();
-            arrNameVariable[i] = nameVariable;
+            arrNameVariableInBoxRecipe[i] = nameVariable;
         }
     }
 
@@ -32,7 +32,6 @@ public class Main {
         System.out.println(" <------- SPREAD ALGORITHM ------> ");
         MapBucketNoron mapBucketNoron = new MapBucketNoron();
 
-
         /*-----------------------------------------------*/
         BootDataRecipe bootDataRecipe = new BootDataRecipe();
         bootDataRecipe.readDataRecipe();
@@ -40,20 +39,22 @@ public class Main {
         mapBucketNoron.display();
         System.out.print("\n" + "Size MapNode : " + mapBucketNoron.mapNODE.size() + "\n");
 
-        /*-----------------------------------------------*/
-        System.out.print("Co Bao Nhieu Bien Dang Ton Tai Trong Cac Cong Thuc : ");
-        int soluongBien; soluongBien = o.nextInt();
-        String [] arrNameVariable = new String[soluongBien];
-        inputVariable(arrNameVariable);
-        System.out.print("List Variable : ");
-        for (int i = 0 ; i < arrNameVariable.length ; i++){
-            System.out.print(arrNameVariable[i] + " ");
+        int soluongBien = bootDataRecipe.listVariableInRecipe.size();
+        String [] arrNameVariableInBoxRecipe = new String[soluongBien];
+        int r = 0;
+        for (String x : bootDataRecipe.listVariableInRecipe){
+            arrNameVariableInBoxRecipe[r] = x;
+            r++;
+        }
+
+        System.out.print("List Variable In Box Recipe : ");
+        for (int i = 0 ; i < arrNameVariableInBoxRecipe.length ; i++){
+            System.out.print(arrNameVariableInBoxRecipe[i] + " ");
         }
         System.out.print("\n");
 
 
-
-
+        /*-----------------------------------------------*/
         // TODO : CREATE MATRIX SPREAD
         int [][] matrixSpread;
         matrixSpread = new int[soluongBien][mapBucketNoron.mapNODE.size()];
@@ -66,10 +67,8 @@ public class Main {
             System.out.print("\n");
         }
 
-
-
 //        //TODO : SETUP MATRIX AVAILABLE ZONE RECIPE
-        mapBucketNoron.setupMatrixSpread(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size(),arrNameVariable);
+        mapBucketNoron.setupMatrixSpread(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size(),arrNameVariableInBoxRecipe);
 //        //TODO : SHOW MATRIX
         /*Step 2*/
         for (int i = 0 ; i < soluongBien ; i++){
@@ -78,8 +77,6 @@ public class Main {
             }
             System.out.print("\n");
         }
-
-
 
         // TODO : Activated Node Already Known
         System.out.println("==========================================");
@@ -94,7 +91,7 @@ public class Main {
             arrayVarKnown[i] = x;
         }
         System.out.print("Thanh Phan Muon Tinh : ");String findResult;findResult = o.nextLine();
-        mapBucketNoron.activatedNodeAlreadyKnown(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size(),arrayVarKnown,arrNameVariable);
+        mapBucketNoron.activatedNodeAlreadyKnown(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size(),arrayVarKnown,arrNameVariableInBoxRecipe);
         //TODO : SHOW MATRIX
         /*Step 3*/
         for (int i = 0 ; i < soluongBien ; i++){
@@ -104,20 +101,11 @@ public class Main {
             System.out.print("\n");
         }
 
-        mapBucketNoron.runAroundMatrixSpread(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size(),findResult,arrNameVariable);
-        System.out.print("End Program");
-
-
-
+        mapBucketNoron.runAroundMatrixSpread(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size(),findResult,arrNameVariableInBoxRecipe);
+        System.out.print("{==== End Program ====}");
 
 
 
 
     }
 }
-
-//        System.out.print("Co Bao Nhieu Cong Thuc : ");
-//        int soluongCT; soluongCT = o.nextInt();
-//        mapBucketNoron.inputMapNODE(soluongCT,arrNameVariable);
-//        mapBucketNoron.display();
-//        System.out.print("\n");

@@ -7,11 +7,13 @@ import java.util.ArrayList;
 
 public class BootDataRecipe {
 
-    private static final String FILENAME = "D:\\zFile\\recipe_2.txt";
+    private static final String FILENAME = "D:\\zFile\\recipe_1.txt";
     ArrayList<String> listBoxRecipe;
+    ArrayList<String> listVariableInRecipe;
 
     public BootDataRecipe(){
         listBoxRecipe = new ArrayList<>();
+        listVariableInRecipe = new ArrayList<>();
     }
 
 
@@ -43,6 +45,15 @@ public class BootDataRecipe {
     }
 
 
+    public boolean checkIsExistInListVariableBoxRecipe(ArrayList<String> listVariableInBoxRecipe , String operator){
+        for (String member : listVariableInBoxRecipe){
+            if (member.compareTo(operator) == 0){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void pushDataToMapNode(MapBucketNoron mapBucketNoron){
 
         for (String recipeBox : listBoxRecipe){
@@ -59,25 +70,32 @@ public class BootDataRecipe {
                 }
             } // Have Description Recipe
 
-            String x = "";
+            String op = "";
             for (int i = startElementIndex ; i < recipeBox.length() ; i++){
 
                 if (i == (recipeBox.length()-1)){
-                    x = "";
+                    op = "";
                     int j = i;
                     while(recipeBox.charAt(j) != ' '){
-                        x += Character.toString(recipeBox.charAt(j));
+                        op += Character.toString(recipeBox.charAt(j));
                         j--;
                     }
-                    StringBuffer stringBuffer = new StringBuffer(x);
-                    x = stringBuffer.reverse().toString();
-                    listOperator.add(x);
+                    StringBuffer stringBuffer = new StringBuffer(op);
+                    op = stringBuffer.reverse().toString();
+                    listOperator.add(op);
+                    if (checkIsExistInListVariableBoxRecipe(listVariableInRecipe,op) == false){
+                        listVariableInRecipe.add(op);
+                    }
+
                 }
                 if (recipeBox.charAt(i) == ' '){
-                    listOperator.add(x);
-                    x="";
+                    listOperator.add(op);
+                    if (checkIsExistInListVariableBoxRecipe(listVariableInRecipe,op) == false){
+                        listVariableInRecipe.add(op);
+                    }
+                    op="";
                 } else {
-                    x += Character.toString(recipeBox.charAt(i));
+                    op += Character.toString(recipeBox.charAt(i));
                 }
 
             }// Have listOperator for Recipe
