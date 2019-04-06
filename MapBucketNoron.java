@@ -100,7 +100,7 @@ public class MapBucketNoron {
     }
 
 
-    public void runAroundMatrixSpread(int [][] matrixSpread ,int height , int width, String findResult,String [] arrNameVariableInBoxRecipe){
+    public void runAroundMatrixSpread(int [][] matrixSpread ,int height , int width, String findResult,String [] arrNameVariableInBoxRecipe, SolveTheOperator solveTheOperator,ManagerVariable<String,Double> managerVariable){
 
         boolean checkFound = false;
         while (checkFound == false){
@@ -124,7 +124,11 @@ public class MapBucketNoron {
             }
             if (count == 1){
                 changeMatrixSpreadAtRow(matrixSpread,height,width,rowToTurnOn);
-                System.out.print("Cong thuc " + (indexRecipe+1)+ " : ["+ mapNODE.get(indexRecipe).listRoot.getFirst().getDescription() +"]" +" -> " + arrNameVariableInBoxRecipe[rowToTurnOn] + "\n");
+
+                System.out.print("Cong thuc " + (indexRecipe+1)+ " : ["+ mapNODE.get(indexRecipe).listRoot.getFirst().getDescription() +"]" +" -> " + arrNameVariableInBoxRecipe[rowToTurnOn] );
+                // Add here
+                double resultPrint = solveTheOperator.SolveRecipeByRequest(mapNODE.get(indexRecipe).listRoot.getFirst().getDescription(),arrNameVariableInBoxRecipe[rowToTurnOn],managerVariable);
+                System.out.println(" - Ket Qua = " + resultPrint + "\n");
             }
             if (findResult.compareTo(arrNameVariableInBoxRecipe[rowToTurnOn]) == 0){
                 checkFound = true;

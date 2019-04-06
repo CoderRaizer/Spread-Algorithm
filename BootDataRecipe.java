@@ -54,7 +54,7 @@ public class BootDataRecipe {
         return false;
     }
 
-    public void pushDataToMapNode(MapBucketNoron mapBucketNoron){
+    public void pushDataToMapNode(MapBucketNoron mapBucketNoron , SolveTheOperator solveTheOperator){
 
         for (String recipeBox : listBoxRecipe){
 
@@ -63,6 +63,7 @@ public class BootDataRecipe {
             int startElementIndex = 0;
             for (int i = 0 ; i < recipeBox.length() ; i++){
                 if(recipeBox.charAt(i) == ':'){
+                    solveTheOperator.listRecipe.add(description);
                     startElementIndex = i+1;
                     break;
                 } else {

@@ -30,14 +30,21 @@ public class Main {
         Scanner o = new Scanner(System.in);
 
         System.out.println(" <------- SPREAD ALGORITHM ------> ");
+        SolveTheOperator solveTheOperator = new SolveTheOperator();
+        ManagerVariable<String,Double> managerVariable = new ManagerVariable<>();
         MapBucketNoron mapBucketNoron = new MapBucketNoron();
 
         /*-----------------------------------------------*/
         BootDataRecipe bootDataRecipe = new BootDataRecipe();
         bootDataRecipe.readDataRecipe();
-        bootDataRecipe.pushDataToMapNode(mapBucketNoron);
+        bootDataRecipe.pushDataToMapNode(mapBucketNoron,solveTheOperator);
         mapBucketNoron.display();
         System.out.print("\n" + "Size MapNode : " + mapBucketNoron.mapNODE.size() + "\n");
+
+        /* SHOW LISTRECIPE IN SOLVEOPERATOR */
+        solveTheOperator.showListRecipeInSolveOperator();
+        /* SHOW LISTRECIPE IN SOLVEOPERATOR */
+
 
         int soluongBien = bootDataRecipe.listVariableInRecipe.size();
         String [] arrNameVariableInBoxRecipe = new String[soluongBien];
@@ -86,10 +93,17 @@ public class Main {
         arrayVarKnown = new String[quantityKnown];
         for (int i = 0 ; i < quantityKnown ; i++){
             o = new Scanner(System.in);
-            System.out.print("Input variable known["+i+"] : ");
-            String x = o.nextLine();
-            arrayVarKnown[i] = x;
+            System.out.print("Input Key variable known["+i+"] : ");String key = o.nextLine();
+            System.out.print("Input value of this variable : ");double val = o.nextInt();
+            // Add Here to managerVariable
+            managerVariable.add(key,val);
+            arrayVarKnown[i] = key;
         }
+        // TODO : Show Collection
+        managerVariable.displayAll();
+
+
+        o = new Scanner(System.in);
         System.out.print("Thanh Phan Muon Tinh : ");String findResult;findResult = o.nextLine();
         mapBucketNoron.activatedNodeAlreadyKnown(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size(),arrayVarKnown,arrNameVariableInBoxRecipe);
         //TODO : SHOW MATRIX
@@ -101,7 +115,7 @@ public class Main {
             System.out.print("\n");
         }
 
-        mapBucketNoron.runAroundMatrixSpread(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size(),findResult,arrNameVariableInBoxRecipe);
+        mapBucketNoron.runAroundMatrixSpread(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size(),findResult,arrNameVariableInBoxRecipe,solveTheOperator,managerVariable);
         System.out.print("{==== End Program ====}");
 
 
