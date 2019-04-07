@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class BootDataRecipe {
 
-    private static final String FILENAME = "D:\\zFile\\recipe_1.txt";
+    private static final String FILENAME = "D:\\zFile\\recipe.txt";
     ArrayList<String> listBoxRecipe;
     ArrayList<String> listVariableInRecipe;
 
