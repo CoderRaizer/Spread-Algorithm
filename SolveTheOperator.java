@@ -16,7 +16,7 @@ public class SolveTheOperator {
             System.out.println(recipe);
         }
         System.out.println("===== IN SolveTheOperator =====");
-    }
+    }//End
 
     public Double SolveRecipeByRequest(String recipe , String variable, ManagerVariable<String,Double> managerVariable){
         int indexRecipe = 0;
@@ -27,7 +27,7 @@ public class SolveTheOperator {
             }
         }
         return DetailSolveRecipe(variable,indexRecipe,managerVariable);
-    }
+    }//End
 
 
     public Double DetailSolveRecipe(String variable , int indexRecipe , ManagerVariable<String,Double> managerVariable){
@@ -281,9 +281,6 @@ public class SolveTheOperator {
         }
 
         return result;
-    }
-
-
-
+    }//End
 
 }

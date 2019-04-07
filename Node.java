@@ -62,11 +62,10 @@ public class Node {
 
     @Override
     public String toString() {
-        if (this.isRecipe == true){
-            return "[RootNode : " + "isRecipe=" + isRecipe + ", description= " + "'"+description+"'" + "]:::> ";
-        }else {
-            return description +" ";
+        String printOut = "RECIPE : " + "[" + this.description + "] ::> ";
+        for (int i = 0 ; i < arrayRecipeIngredients.length ; i++){
+            printOut += arrayRecipeIngredients[i] + " ";
         }
-
+            return printOut;
     }
 }

@@ -24,6 +24,15 @@ public class Main {
         }
     }
 
+    public static void showMatrixSpread(int [][] matrixSpread, int height, int width){
+        for (int i = 0 ; i < height ;i++){
+            for (int j = 0 ; j < width ; j++){
+                System.out.print(matrixSpread[i][j] + " ");
+            }
+            System.out.print("\n");
+        }
+    }
+
 
     public static void main(String[] args) {
 
@@ -32,28 +41,29 @@ public class Main {
         System.out.println(" <------- SPREAD ALGORITHM ------> ");
         SolveTheOperator solveTheOperator = new SolveTheOperator();
         ManagerVariable<String,Double> managerVariable = new ManagerVariable<>();
-        MapBucketNoron mapBucketNoron = new MapBucketNoron();
-
-        /*-----------------------------------------------*/
         BootDataRecipe bootDataRecipe = new BootDataRecipe();
+        MapBucketNoron mapBucketNoron = new MapBucketNoron();
+        /*-----------------------------------------------*/
+
         bootDataRecipe.readDataRecipe();
         bootDataRecipe.pushDataToMapNode(mapBucketNoron,solveTheOperator);
         mapBucketNoron.display();
         System.out.print("\n" + "Size MapNode : " + mapBucketNoron.mapNODE.size() + "\n");
 
-        /* SHOW LISTRECIPE IN SOLVEOPERATOR */
+        /*-----------------------------------------------*/
+        /* Show list recipe in Solve Operator */
         solveTheOperator.showListRecipeInSolveOperator();
-        /* SHOW LISTRECIPE IN SOLVEOPERATOR */
+        /* Show list recipe in Solve Operator */
 
 
-        int soluongBien = bootDataRecipe.listVariableInRecipe.size();
+        // Copy List variable in Box Recipe
+        int soluongBien = bootDataRecipe.listVariableInBoxRecipe.size();
         String [] arrNameVariableInBoxRecipe = new String[soluongBien];
         int r = 0;
-        for (String x : bootDataRecipe.listVariableInRecipe){
+        for (String x : bootDataRecipe.listVariableInBoxRecipe){
             arrNameVariableInBoxRecipe[r] = x;
             r++;
         }
-
         System.out.print("List Variable In Box Recipe : ");
         for (int i = 0 ; i < arrNameVariableInBoxRecipe.length ; i++){
             System.out.print(arrNameVariableInBoxRecipe[i] + " ");
@@ -61,31 +71,21 @@ public class Main {
         System.out.print("\n");
 
 
-        /*-----------------------------------------------*/
-        // TODO : CREATE MATRIX SPREAD
+
+        /* ----- TODO : CREATE MATRIX SPREAD ----- */
         int [][] matrixSpread;
         matrixSpread = new int[soluongBien][mapBucketNoron.mapNODE.size()];
-        // TODO : FIRST INIT FOR MATRIX
         firstInitMatrixSpread(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size());
-        for (int i = 0 ; i < soluongBien ; i++){
-            for (int j = 0 ; j < mapBucketNoron.mapNODE.size() ; j++){
-                System.out.print(matrixSpread[i][j] + " ");
-            }
-            System.out.print("\n");
-        }
+        showMatrixSpread(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size());
+        System.out.println("--------------------------------");
 
-//        //TODO : SETUP MATRIX AVAILABLE ZONE RECIPE
+        /* ----- TODO : SETUP MATRIX AVAILABLE ZONE RECIPE ----- */
         mapBucketNoron.setupMatrixSpread(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size(),arrNameVariableInBoxRecipe);
-//        //TODO : SHOW MATRIX
-        /*Step 2*/
-        for (int i = 0 ; i < soluongBien ; i++){
-            for (int j = 0 ; j < mapBucketNoron.mapNODE.size() ; j++){
-                System.out.print(matrixSpread[i][j] + " ");
-            }
-            System.out.print("\n");
-        }
+        showMatrixSpread(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size());
 
-        // TODO : Activated Node Already Known
+
+
+        /* ----- TODO : ACTIVATED NODE ALREADY KNOWN (-1) ----- */
         System.out.println("==========================================");
         System.out.print("Co Bao Nhieu Thanh Phan Da Biet (Cho Truoc) : ");
         int quantityKnown; quantityKnown = o.nextInt();
@@ -99,27 +99,21 @@ public class Main {
             managerVariable.add(key,val);
             arrayVarKnown[i] = key;
         }
-        // TODO : Show Collection
         managerVariable.displayAll();
 
 
-        o = new Scanner(System.in);
-        System.out.print("Thanh Phan Muon Tinh : ");String findResult;findResult = o.nextLine();
+        /* ----- TODO : ACTIVATE NODE ALREADY KNOWN (1) ----- */
         mapBucketNoron.activatedNodeAlreadyKnown(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size(),arrayVarKnown,arrNameVariableInBoxRecipe);
-        //TODO : SHOW MATRIX
-        /*Step 3*/
-        for (int i = 0 ; i < soluongBien ; i++){
-            for (int j = 0 ; j < mapBucketNoron.mapNODE.size() ; j++){
-                System.out.print(matrixSpread[i][j] + " ");
-            }
-            System.out.print("\n");
-        }
+        showMatrixSpread(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size());
+
+
+        /* ----- TODO : RUN TO SOLVE ----- */
+        System.out.print("Thanh Phan Muon Tinh : ");
+        o = new Scanner(System.in);
+        String findResult;findResult = o.nextLine();
 
         mapBucketNoron.runAroundMatrixSpread(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size(),findResult,arrNameVariableInBoxRecipe,solveTheOperator,managerVariable);
         System.out.print("{==== End Program ====}");
-
-
-
 
     }
 }

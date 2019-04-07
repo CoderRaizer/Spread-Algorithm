@@ -9,13 +9,12 @@ public class BootDataRecipe {
 
     private static final String FILENAME = "D:\\zFile\\recipe.txt";
     ArrayList<String> listBoxRecipe;
-    ArrayList<String> listVariableInRecipe;
+    ArrayList<String> listVariableInBoxRecipe;
 
     public BootDataRecipe(){
         listBoxRecipe = new ArrayList<>();
-        listVariableInRecipe = new ArrayList<>();
-    }
-
+        listVariableInBoxRecipe = new ArrayList<>();
+    }//End
 
     public void readDataRecipe(){
 
@@ -42,8 +41,7 @@ public class BootDataRecipe {
                 ex.printStackTrace();
             }
         }
-    }
-
+    }//End
 
     public boolean checkIsExistInListVariableBoxRecipe(ArrayList<String> listVariableInBoxRecipe , String operator){
         for (String member : listVariableInBoxRecipe){
@@ -52,7 +50,7 @@ public class BootDataRecipe {
             }
         }
         return false;
-    }
+    }//End
 
     public void pushDataToMapNode(MapBucketNoron mapBucketNoron , SolveTheOperator solveTheOperator){
 
@@ -84,15 +82,15 @@ public class BootDataRecipe {
                     StringBuffer stringBuffer = new StringBuffer(op);
                     op = stringBuffer.reverse().toString();
                     listOperator.add(op);
-                    if (checkIsExistInListVariableBoxRecipe(listVariableInRecipe,op) == false){
-                        listVariableInRecipe.add(op);
+                    if (checkIsExistInListVariableBoxRecipe(listVariableInBoxRecipe,op) == false){
+                        listVariableInBoxRecipe.add(op);
                     }
 
                 }
                 if (recipeBox.charAt(i) == ' '){
                     listOperator.add(op);
-                    if (checkIsExistInListVariableBoxRecipe(listVariableInRecipe,op) == false){
-                        listVariableInRecipe.add(op);
+                    if (checkIsExistInListVariableBoxRecipe(listVariableInBoxRecipe,op) == false){
+                        listVariableInBoxRecipe.add(op);
                     }
                     op="";
                 } else {
@@ -105,17 +103,10 @@ public class BootDataRecipe {
             mapBucketNoron.getDataRecipe(description,listOperator);
             listOperator.clear();
         }
-    }
+    }//End
 
     public void showListRecipe(){
         for (String x : listBoxRecipe) System.out.println(x);
     }
-
-
-
-//    public BootDataRecipe(MapBucketNoron mapBucketNoron, int soluongCT,String [] arrNameVariable){
-//        mapBucketNoron.inputMapNODE(soluongCT,arrNameVariable);
-//    }
-
 
 }

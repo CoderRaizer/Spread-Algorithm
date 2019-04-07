@@ -14,11 +14,12 @@ public class ManagerVariable<K,V> {
         if (!collectionVariable.containsValue(key)) {
             collectionVariable.put(key, value);
         }
-    }
+    }//End
 
     public void displayAll() {
+        System.out.println("< Element In HashMap >");
         collectionVariable.forEach((K,V)-> System.out.println(
                 "[ Key= " + K + " , Value= " + V + " ]"
         ));
-    }
+    }//End
 }

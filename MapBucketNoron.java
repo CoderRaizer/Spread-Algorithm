@@ -1,7 +1,5 @@
 package spread_algorithm;
 
-import astar_algorithm.ListRootNode;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -26,7 +24,6 @@ public class MapBucketNoron {
 
 
     public void getDataRecipe(String description, ArrayList<String> listOperator){
-        ListRootNode listTemp = new ListRootNode();
         Node node = new Node();
         node.setUpNode(description,listOperator);
         mapNODE.add(node);
@@ -90,7 +87,7 @@ public class MapBucketNoron {
                 return;
             }
         }
-    }
+    }//End
 
 
     public void runAroundMatrixSpread(int [][] matrixSpread ,int height , int width, String findResult,String [] arrNameVariableInBoxRecipe, SolveTheOperator solveTheOperator,ManagerVariable<String,Double> managerVariable){
@@ -132,8 +129,8 @@ public class MapBucketNoron {
 
 
     public void display(){
-        for (Node l: mapNODE) {
-            l.toString();
+        for (Node x: mapNODE) {
+            System.out.println(x.toString());
         }
     }//End
 
