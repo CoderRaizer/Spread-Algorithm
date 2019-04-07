@@ -40,29 +40,40 @@ public class SolveTheOperator {
                 double B = managerVariable.collectionVariable.get("B");
                 double C = managerVariable.collectionVariable.get("C");
                 result = 180 - (B + C);
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
             if (variable.compareTo("B") == 0){
                 double A = managerVariable.collectionVariable.get("A");
                 double C = managerVariable.collectionVariable.get("C");
                 result = 180 - (A + C);
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
             if (variable.compareTo("C") == 0){
                 double A = managerVariable.collectionVariable.get("A");
                 double B = managerVariable.collectionVariable.get("B");
                 result = 180 - (A + B);
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
         }
 
 
-        if(indexRecipe == 1){ // CT 2 : b/sinB=c/sinC (Chua Duoc)
+        if(indexRecipe == 1){ // CT 2 : b/sinB=c/sinC
             if (variable.compareTo("b") == 0){
                 double B = managerVariable.collectionVariable.get("B");
                 double c = managerVariable.collectionVariable.get("c");
                 double C = managerVariable.collectionVariable.get("C");
-                result = (c*Math.sin(B))/Math.sin(C);
+
+                double x = Math.toRadians(B);
+                double sinB = Math.sin(x);
+
+                double y = Math.toRadians(C);
+                double sinC = Math.sin(y);
+
+                result = (c*sinB)/sinC;
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
             if (variable.compareTo("B") == 0){
@@ -72,14 +83,22 @@ public class SolveTheOperator {
 
                 double radians = (b*Math.sin(C))/c; // Sin(B)
                 result = Math.toDegrees(Math.asin(Math.sin(radians)));
-
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
             if (variable.compareTo("c") == 0){
                 double b = managerVariable.collectionVariable.get("b");
                 double B = managerVariable.collectionVariable.get("B");
                 double C = managerVariable.collectionVariable.get("C");
-                result = (b*Math.sin(C))/Math.sin(B);
+
+                double x = Math.toRadians(C);
+                double sinC = Math.sin(x);
+
+                double y = Math.toRadians(B);
+                double sinB = Math.sin(y);
+
+                result = (b*sinC)/sinB;
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
             if (variable.compareTo("C") == 0){
@@ -90,6 +109,7 @@ public class SolveTheOperator {
 
                 double radians = (c*Math.sin(B))/b;// Sin(C)
                 result = Math.toDegrees(Math.asin(Math.sin(radians)));
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
         }
@@ -107,6 +127,7 @@ public class SolveTheOperator {
                 double x3 = p-c;
                 double x = p*x1*x2*x3;
                 result = Math.sqrt(x);
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
             if (variable.compareTo("p") == 0){
@@ -115,6 +136,7 @@ public class SolveTheOperator {
                 double b = managerVariable.collectionVariable.get("b");
                 double c = managerVariable.collectionVariable.get("c");
                 result = (a+b+c)/2;
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
             if (variable.compareTo("a") == 0){
@@ -123,6 +145,7 @@ public class SolveTheOperator {
                 double b = managerVariable.collectionVariable.get("b");
                 double c = managerVariable.collectionVariable.get("c");
                 result = p - (Math.pow(S,2)/(p*(p-b)*(p-c)));
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
             if (variable.compareTo("b") == 0){
@@ -131,6 +154,7 @@ public class SolveTheOperator {
                 double a = managerVariable.collectionVariable.get("a");
                 double c = managerVariable.collectionVariable.get("c");
                 result = p - (Math.pow(S,2)/(p*(p-a)*(p-c)));
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
             if (variable.compareTo("c") == 0){
@@ -139,6 +163,7 @@ public class SolveTheOperator {
                 double a = managerVariable.collectionVariable.get("a");
                 double b = managerVariable.collectionVariable.get("b");
                 result = p - (Math.pow(S,2)/(p*(p-a)*(p-b)));
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
         }
@@ -149,6 +174,7 @@ public class SolveTheOperator {
                 double b = managerVariable.collectionVariable.get("b");
                 double c = managerVariable.collectionVariable.get("c");
                 result = (a+b+c)/2;
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
             if (variable.compareTo("a") == 0){
@@ -156,6 +182,7 @@ public class SolveTheOperator {
                 double b = managerVariable.collectionVariable.get("b");
                 double c = managerVariable.collectionVariable.get("c");
                 result = (2*p) - (b+c);
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
             if (variable.compareTo("b") == 0){
@@ -163,6 +190,7 @@ public class SolveTheOperator {
                 double a = managerVariable.collectionVariable.get("a");
                 double c = managerVariable.collectionVariable.get("c");
                 result = (2*p) - (a+c);
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
             if (variable.compareTo("c") == 0){
@@ -170,6 +198,7 @@ public class SolveTheOperator {
                 double a = managerVariable.collectionVariable.get("a");
                 double b = managerVariable.collectionVariable.get("b");
                 result = (2*p) - (a+b);
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
         }
@@ -179,33 +208,39 @@ public class SolveTheOperator {
                 double a = managerVariable.collectionVariable.get("a");
                 double ha = managerVariable.collectionVariable.get("ha");
                 result = (1/2)*a*ha;
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
             if (variable.compareTo("a") == 0){
                 double S = managerVariable.collectionVariable.get("S");
                 double ha = managerVariable.collectionVariable.get("ha");
                 result = (2*S)/ha;
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
             if (variable.compareTo("ha") == 0){
                 double S = managerVariable.collectionVariable.get("S");
                 double a = managerVariable.collectionVariable.get("a");
                 result = (2*S)/a;
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
         }
-        // CT 6 : a/sinA=b/sinB (Chua Duoc)
+        // CT 6 : a/sinA=b/sinB
         if(indexRecipe == 5){
             if (variable.compareTo("a") == 0){
                 double A = managerVariable.collectionVariable.get("A");
                 double b = managerVariable.collectionVariable.get("b");
                 double B = managerVariable.collectionVariable.get("B");
 
-                double sinA = Math.asin(Math.sin(A));
-                double sinB = Math.asin(Math.sin(B));
-                double x = Math.toDegrees((b*Math.sin(A)));
+                double x = Math.toRadians(A);
+                double sinA = Math.sin(x);
 
-                result = Math.toDegrees(x);
+                double y = Math.toRadians(B);
+                double sinB = Math.sin(y);
+
+                result = (b+sinA)/sinB;
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
             if (variable.compareTo("A") == 0){
@@ -215,13 +250,22 @@ public class SolveTheOperator {
 
                 double radians = (a*Math.sin(B))/b; // sin(A)
                 result = Math.toDegrees(Math.asin(Math.sin(radians)));
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
             if (variable.compareTo("b") == 0){
                 double a = managerVariable.collectionVariable.get("a");
                 double A = managerVariable.collectionVariable.get("A");
                 double B = managerVariable.collectionVariable.get("B");
-                result = (a/Math.sin(A))*Math.sin(B);
+
+                double x = Math.toRadians(B);
+                double sinB = Math.sin(x);
+
+                double y = Math.toRadians(A);
+                double sinA = Math.sin(y);
+
+                result = (a*sinB)/sinA;
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
             if (variable.compareTo("B") == 0){
@@ -231,7 +275,7 @@ public class SolveTheOperator {
 
                 double radians = (b*Math.sin(A))/a; // sin(B)
                 result = Math.toDegrees(Math.asin(Math.sin(radians)));
-
+                result = Math.ceil(result * 100) / 100;
                 managerVariable.add(variable,result);
             }
         }
