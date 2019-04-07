@@ -1,11 +1,13 @@
 package spread_algorithm;
 
+import astar_algorithm.ListRootNode;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MapBucketNoron {
 
-    ArrayList<ListRootNode> mapNODE;
+    ArrayList<Node> mapNODE;
     Scanner o;
 
     public MapBucketNoron(){
@@ -25,29 +27,20 @@ public class MapBucketNoron {
 
     public void getDataRecipe(String description, ArrayList<String> listOperator){
         ListRootNode listTemp = new ListRootNode();
-        Node rootNode = new Node();
-        rootNode.setUpNodeIsRecipe(description,listOperator);
-        listTemp.addNodeToList(rootNode);
-        for (String operator : listOperator){
-            Node subNode = new Node();
-            subNode.setUpNodeIsElement(operator);
-            listTemp.addNodeToList(subNode);
-        }
-        mapNODE.add(listTemp);
+        Node node = new Node();
+        node.setUpNode(description,listOperator);
+        mapNODE.add(node);
     }//End
 
 
     public boolean isContainedInTheRecipe(String element,int indexRecipe){
-        ListRootNode listTemp = mapNODE.get(indexRecipe);
-            for (Node x: listTemp.getListRoot()) {
-            if(x.getRecipe() == true){
+
+        Node x = mapNODE.get(indexRecipe);
                 for (int i = 0 ; i < x.arrayRecipeIngredients.length; i++ ){
                     if(x.arrayRecipeIngredients[i].compareTo(element) == 0){
                         return true;
                     }
                 }
-            }
-        }
         return false;
     }//End
 
@@ -125,9 +118,9 @@ public class MapBucketNoron {
             if (count == 1){
                 changeMatrixSpreadAtRow(matrixSpread,height,width,rowToTurnOn);
 
-                System.out.print("Cong thuc " + (indexRecipe+1)+ " : ["+ mapNODE.get(indexRecipe).listRoot.getFirst().getDescription() +"]" +" -> " + arrNameVariableInBoxRecipe[rowToTurnOn] );
+                System.out.print("Cong thuc " + (indexRecipe+1)+ " : ["+ mapNODE.get(indexRecipe).getDescription() +"]" +" -> " + arrNameVariableInBoxRecipe[rowToTurnOn] );
                 // Add here
-                double resultPrint = solveTheOperator.SolveRecipeByRequest(mapNODE.get(indexRecipe).listRoot.getFirst().getDescription(),arrNameVariableInBoxRecipe[rowToTurnOn],managerVariable);
+                double resultPrint = solveTheOperator.SolveRecipeByRequest(mapNODE.get(indexRecipe).getDescription(),arrNameVariableInBoxRecipe[rowToTurnOn],managerVariable);
                 System.out.println(" - Ket Qua = " + resultPrint + "\n");
             }
             if (findResult.compareTo(arrNameVariableInBoxRecipe[rowToTurnOn]) == 0){
@@ -139,8 +132,8 @@ public class MapBucketNoron {
 
 
     public void display(){
-        for (ListRootNode l: mapNODE) {
-            l.display();
+        for (Node l: mapNODE) {
+            l.toString();
         }
     }//End
 
