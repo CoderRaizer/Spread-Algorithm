@@ -79,13 +79,13 @@ public class Main {
         showMatrixSpread(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size());
         System.out.println("--------------------------------");
 
-        /* ----- TODO : SETUP MATRIX AVAILABLE ZONE RECIPE ----- */
+        /* ----- TODO : SETUP MATRIX AVAILABLE ZONE RECIPE (-1) ----- */
         mapBucketNoron.setupMatrixSpread(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size(),arrNameVariableInBoxRecipe);
         showMatrixSpread(matrixSpread,soluongBien,mapBucketNoron.mapNODE.size());
 
 
 
-        /* ----- TODO : ACTIVATED NODE ALREADY KNOWN (-1) ----- */
+        /* ----- TODO : INPUT VARIABLE KNOWN WHEN START ----- */
         System.out.println("==========================================");
         System.out.print("Co Bao Nhieu Thanh Phan Da Biet (Cho Truoc) : ");
         int quantityKnown; quantityKnown = o.nextInt();
